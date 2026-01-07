@@ -1,0 +1,540 @@
+/* ========================================
+   Material Design 3 Token System
+   ======================================== */
+
+:root {
+  /* MD3 Color Tokens - Dark Theme (Default) */
+  --md-sys-color-background: #141218;
+  --md-sys-color-on-background: #e6e1e5;
+  --md-sys-color-surface: #141218;
+  --md-sys-color-surface-container-low: #1d1b20;
+  --md-sys-color-surface-container: #211f26;
+  --md-sys-color-surface-container-high: #2b2930;
+  --md-sys-color-on-surface: #e6e1e5;
+  --md-sys-color-on-surface-variant: #cac4d0;
+  --md-sys-color-outline: #938f99;
+  --md-sys-color-outline-variant: #49454f;
+
+  --md-sys-color-primary: #d0bcff;
+  --md-sys-color-on-primary: #381e72;
+  --md-sys-color-primary-container: #4f378b;
+  --md-sys-color-on-primary-container: #eaddff;
+
+  --md-sys-color-secondary-container: #4a4458;
+  --md-sys-color-on-secondary-container: #e8def8;
+
+  --md-sys-color-tertiary-container: #633b48;
+  --md-sys-color-on-tertiary-container: #ffd8e4;
+
+  --md-sys-color-error: #f2b8b5;
+  --md-sys-color-error-container: #8c1d18;
+  --md-sys-color-on-error-container: #f9dedc;
+
+  /* Terminal Colors */
+  --terminal-bg: #1d1b20;
+  --terminal-text: #e6e1e5;
+
+  /* Typography */
+  --md-sys-typescale-font-brand: "Roboto", "Inter", sans-serif;
+  --md-sys-typescale-font-plain: "Roboto", "Inter", sans-serif;
+  --md-sys-typescale-font-code: "JetBrains Mono", monospace;
+
+  /* Shape */
+  --md-sys-shape-corner-small: 8px;
+  --md-sys-shape-corner-medium: 12px;
+  --md-sys-shape-corner-large: 16px;
+  --md-sys-shape-corner-full: 9999px;
+
+  /* Elevation (Shadows) */
+  --md-sys-elevation-1: 0px 1px 3px 1px rgba(0, 0, 0, 0.15),
+    0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+  --md-sys-elevation-2: 0px 2px 6px 2px rgba(0, 0, 0, 0.15),
+    0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+  --md-sys-elevation-3: 0px 4px 8px 3px rgba(0, 0, 0, 0.15),
+    0px 1px 3px 0px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="light"] {
+  --md-sys-color-background: #fef7ff;
+  --md-sys-color-on-background: #1d1b20;
+  --md-sys-color-surface: #fef7ff;
+  --md-sys-color-surface-container-low: #f7f2fa;
+  --md-sys-color-surface-container: #f3edf7;
+  --md-sys-color-surface-container-high: #ece6f0;
+  --md-sys-color-on-surface: #1d1b20;
+  --md-sys-color-on-surface-variant: #49454f;
+  --md-sys-color-outline: #79747e;
+  --md-sys-color-outline-variant: #cac4d0;
+
+  --md-sys-color-primary: #6750a4;
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary-container: #eaddff;
+  --md-sys-color-on-primary-container: #21005d;
+
+  --md-sys-color-secondary-container: #e8def8;
+  --md-sys-color-on-secondary-container: #1d192b;
+
+  --md-sys-color-tertiary-container: #ffd8e4;
+  --md-sys-color-on-tertiary-container: #31111d;
+
+  --md-sys-color-error: #b3261e;
+  --md-sys-color-error-container: #f9dedc;
+  --md-sys-color-on-error-container: #410e0b;
+
+  /* Remove terminal overrides: Terminal is always dark even in light mode */
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+html {
+  font-size: 16px;
+}
+body {
+  background-color: var(--md-sys-color-background);
+  color: var(--md-sys-color-on-background);
+  font-family: var(--md-sys-typescale-font-plain);
+  line-height: 1.5;
+  min-height: 100vh;
+  transition: background-color 0.3s, color 0.3s;
+}
+[hidden] {
+  display: none !important;
+}
+
+/* Layout Scaffold */
+.app-scaffold {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 840px; /* MD3 standard width for medium layouts */
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Top App Bar */
+.top-app-bar {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  margin-bottom: 24px;
+}
+.headline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.headline h1 {
+  font-size: 22px;
+  font-weight: 500; /* Regular weight for MD3 headlines */
+  color: var(--md-sys-color-on-surface);
+}
+.logo-icon {
+  font-size: 28px;
+  color: var(--md-sys-color-primary);
+}
+
+/* Main Container */
+.main-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Cards */
+.card {
+  background-color: var(--md-sys-color-surface-container-low);
+  border-radius: var(--md-sys-shape-corner-medium);
+  padding: 24px;
+  /* MD3 cards usually flat or low elevation */
+  border: 1px solid transparent;
+}
+
+/* Search Card Elements */
+.search-card {
+  background-color: var(
+    --md-sys-color-surface-container
+  ); /* Slightly higher emphasis */
+  padding: 24px;
+  border-radius: var(--md-sys-shape-corner-large);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.search-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.search-field {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: var(--md-sys-color-surface-container-high);
+  border-radius: var(--md-sys-shape-corner-full);
+  height: 56px;
+  padding: 0 16px;
+  transition: 0.2s;
+}
+.search-field:focus-within {
+  background-color: var(--md-sys-color-surface-container-high);
+  outline: 2px solid var(--md-sys-color-primary);
+}
+.search-field input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  color: var(--md-sys-color-on-surface);
+  font-family: inherit;
+  padding: 0 12px;
+  height: 100%;
+}
+.search-field input:focus {
+  outline: none;
+}
+.search-field .material-symbols-rounded {
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 24px;
+}
+/* Autocomplete Dropdown */
+.autocomplete-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 4px;
+  background-color: #ffffff; /* Requested white background */
+  border-radius: var(--md-sys-shape-corner-medium);
+  box-shadow: var(--md-sys-elevation-2);
+  max-height: 280px;
+  overflow-y: auto;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0;
+}
+.autocomplete-dropdown[hidden] {
+  display: none !important;
+}
+
+.autocomplete-item {
+  padding: 12px 16px;
+  font-size: 15px;
+  color: #1d1b20; /* Dark text for white background */
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  text-align: left;
+  font-family: var(
+    --md-sys-typescale-font-code
+  ); /* Use monospace for commands */
+  transition: background-color 0.1s;
+}
+.autocomplete-item:hover,
+.autocomplete-item.selected {
+  background-color: #f1f0f4; /* Light grey hover */
+}
+/* Remove dark theme overrides, force white style always */
+.autocomplete-item strong {
+  font-weight: 700;
+  /* Use MD3 Light Theme Primary (#6750a4) to match theme hue but ensure contrast on white */
+  color: #6750a4;
+}
+
+/* Buttons */
+.search-action-btn {
+  height: 56px;
+  padding: 0 28px;
+  border-radius: var(--md-sys-shape-corner-full);
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.fab-extended {
+  /* Legacy style removal or keep for reference if needed, but we used filled-btn now */
+}
+/* FAB Small (Back to Top) */
+.fab-small {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--md-sys-elevation-3);
+  transition: transform 0.2s, opacity 0.2s;
+  z-index: 100;
+}
+.fab-small:hover {
+  filter: brightness(1.05);
+  transform: scale(1.05);
+}
+.fab-small:active {
+  transform: scale(0.95);
+}
+.fab-small[hidden] {
+  display: flex !important; /* Override global hidden for animation if needed, but simple hide is better */
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.8);
+}
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--md-sys-color-on-surface-variant);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.icon-btn:hover {
+  background-color: var(--md-sys-color-surface-container-high);
+  color: var(--md-sys-color-on-surface);
+}
+
+/* Filled Button (for Search) */
+.filled-btn {
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  border: none;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: var(--md-sys-elevation-1);
+}
+.filled-btn:hover {
+  box-shadow: var(--md-sys-elevation-2);
+  filter: brightness(1.08);
+}
+.filled-btn:active {
+  box-shadow: var(--md-sys-elevation-1);
+}
+
+.tonal-btn {
+  background-color: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+  height: 40px;
+  padding: 0 24px;
+  border-radius: var(--md-sys-shape-corner-full);
+  border: none;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.tonal-btn:hover {
+  filter: brightness(0.95);
+  box-shadow: var(--md-sys-elevation-1);
+}
+.tonal-btn.copied {
+  background-color: var(--md-sys-color-tertiary-container);
+  color: var(--md-sys-color-on-tertiary-container);
+}
+
+.text-btn {
+  background: transparent;
+  color: var(--md-sys-color-primary);
+  border: none;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: var(--md-sys-shape-corner-full);
+  cursor: pointer;
+  font-size: 14px;
+}
+.text-btn:hover {
+  background-color: rgba(208, 188, 255, 0.08); /* Primary opacity */
+}
+
+/* Chips */
+.chips-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.label {
+  font-size: 14px;
+  color: var(--md-sys-color-on-surface-variant);
+  margin-right: 4px;
+}
+.chip {
+  background-color: transparent;
+  border: 1px solid var(--md-sys-color-outline);
+  color: var(--md-sys-color-on-surface-variant);
+  height: 32px;
+  padding: 0 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: var(--md-sys-typescale-font-code);
+  cursor: pointer;
+  transition: 0.2s;
+}
+.chip:hover {
+  background-color: var(--md-sys-color-surface-container-high);
+  border-color: var(--md-sys-color-on-surface-variant);
+  color: var(--md-sys-color-on-surface);
+}
+
+/* History */
+.history-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.section-header h3 {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--md-sys-color-on-surface);
+}
+.history-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.history-chips .chip {
+  background-color: var(--md-sys-color-surface-container);
+  border: none;
+}
+
+/* Results Card */
+.result-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 200px;
+}
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-header h2 {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--md-sys-color-on-surface);
+}
+.code-block {
+  background-color: var(--terminal-bg);
+  color: var(--terminal-text);
+  padding: 16px;
+  border-radius: var(--md-sys-shape-corner-small);
+  font-family: var(--md-sys-typescale-font-code);
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  min-height: 100px;
+}
+
+/* Loading & Error */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 32px;
+  color: var(--md-sys-color-on-surface-variant);
+}
+.circular-progress {
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--md-sys-color-surface-container-high);
+  border-top-color: var(--md-sys-color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px;
+  color: var(--md-sys-color-error);
+  background-color: var(--md-sys-color-error-container);
+  border-radius: var(--md-sys-shape-corner-medium);
+}
+
+.footer {
+  margin-top: auto;
+  padding: 32px 0;
+  text-align: center;
+  font-size: 14px;
+  color: var(--md-sys-color-on-surface-variant);
+}
+.footer a {
+  color: inherit;
+  font-weight: 500;
+}
+
+/* ANSI Highlighting for Terminal */
+/* GitHub Dark inspired for Dark Mode */
+.ansi-black-fg {
+  color: #8b949e;
+}
+.ansi-red-fg {
+  color: #ff7b72;
+}
+.ansi-green-fg {
+  color: #7ee787;
+}
+.ansi-yellow-fg {
+  color: #d29922;
+}
+.ansi-blue-fg {
+  color: #79c0ff;
+}
+.ansi-magenta-fg {
+  color: #d2a8ff;
+}
+.ansi-cyan-fg {
+  color: #a5d6ff;
+}
+.ansi-white-fg {
+  color: #f0f6fc;
+}
+.ansi-bright-black-fg {
+  color: #6e7681;
+}
+
+/* No light theme overrides - Terminal always uses dark mode highlights */

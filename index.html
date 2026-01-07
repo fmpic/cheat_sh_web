@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cheat.sh</title>
+    <meta
+      name="description"
+      content="Material Design 3 style cheat.sh cheat sheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-scaffold">
+      <header class="top-app-bar">
+        <div class="headline">
+          <span class="material-symbols-rounded logo-icon">terminal</span>
+          <h1>Cheat.sh</h1>
+        </div>
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle Theme">
+          <span class="material-symbols-rounded">dark_mode</span>
+        </button>
+      </header>
+
+      <main class="main-container">
+        <!-- Search Card -->
+        <div class="card search-card">
+          <div class="search-row">
+            <div class="search-field">
+              <span class="material-symbols-rounded leading-icon">search</span>
+              <input
+                type="text"
+                id="searchInput"
+                placeholder="Search commands (e.g. tar, git)..."
+                spellcheck="false"
+                autocomplete="off"
+              />
+              <div
+                class="autocomplete-dropdown"
+                id="autocompleteDropdown"
+                hidden
+              ></div>
+              <button class="icon-btn trailing-icon" id="clearBtn" hidden>
+                <span class="material-symbols-rounded">cancel</span>
+              </button>
+            </div>
+            <button class="filled-btn search-action-btn" id="searchBtn">
+              <span class="material-symbols-rounded">search</span>
+              <span>Search</span>
+            </button>
+          </div>
+
+          <div class="chips-row">
+            <span class="label">Popular:</span>
+            <button class="chip" data-query="tar">tar</button>
+            <button class="chip" data-query="curl">curl</button>
+            <button class="chip" data-query="git">git</button>
+            <button class="chip" data-query="python/:learn">python</button>
+          </div>
+        </div>
+
+        <!-- History -->
+        <div class="history-section" id="historySection">
+          <div class="section-header">
+            <h3>Recent Searches</h3>
+            <button class="text-btn" id="clearHistoryBtn">Clear All</button>
+          </div>
+          <div class="history-chips" id="historyList">
+            <!-- History items -->
+          </div>
+        </div>
+
+        <!-- Result Card -->
+        <div class="card result-card" id="resultsSection" hidden>
+          <div class="card-header">
+            <h2 id="resultsTitle">Results</h2>
+            <button class="tonal-btn" id="copyBtn">
+              <span class="material-symbols-rounded">content_copy</span>
+              <span>Copy</span>
+            </button>
+          </div>
+          <div class="card-content">
+            <div class="loading-state" id="loading" hidden>
+              <div class="circular-progress"></div>
+              <span>Loading...</span>
+            </div>
+            <div class="error-state" id="errorMessage" hidden>
+              <span class="material-symbols-rounded">error</span>
+              <span id="errorText">Error occurred</span>
+            </div>
+            <pre id="resultsContent" class="code-block"></pre>
+          </div>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <p>
+          Powered by <a href="https://cheat.sh" target="_blank">cheat.sh</a>
+        </p>
+      </footer>
+      <button
+        class="fab-small"
+        id="backToTopBtn"
+        hidden
+        aria-label="Back to Top"
+      >
+        <span class="material-symbols-rounded">arrow_upward</span>
+      </button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/ansi_up@5.2.1/ansi_up.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
