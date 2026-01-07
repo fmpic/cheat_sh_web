@@ -18,7 +18,6 @@ const CONFIG = {
 const $ = (id) => document.getElementById(id);
 const elements = {
   searchInput: $("searchInput"),
-  searchBtn: $("searchBtn"),
   clearBtn: $("clearBtn"),
   themeToggle: $("themeToggle"),
   resultsTitle: $("resultsTitle"),
@@ -309,11 +308,16 @@ function updateAutocomplete(query) {
   dropdown.hidden = false;
 
   // Click events
-  dropdown.querySelectorAll(".autocomplete-item").forEach((item) => {
+  const items = dropdown.querySelectorAll(".autocomplete-item");
+  items.forEach((item) => {
     item.addEventListener("click", () => {
       selectSuggestion(item.dataset.val);
     });
   });
+
+  // Auto-select first item
+  selectedIndex = 0;
+  updateSelection(items);
 }
 
 function selectSuggestion(val) {
@@ -382,7 +386,6 @@ function init() {
     const val = e.target.value;
     elements.clearBtn.hidden = !val;
     updateAutocomplete(val);
-    selectedIndex = -1; // Reset selection on input
   });
 
   // Close dropdown when clicking outside
@@ -392,9 +395,6 @@ function init() {
     }
   });
 
-  elements.searchBtn.addEventListener("click", () =>
-    performSearch(elements.searchInput.value)
-  );
   elements.clearBtn.addEventListener("click", () => {
     setSearch("");
     elements.searchInput.focus();
