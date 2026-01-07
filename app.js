@@ -40,8 +40,21 @@ let currentResult = "";
 // Theme Management
 function initTheme() {
   const saved = localStorage.getItem(CONFIG.STORAGE_KEY_THEME);
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  setTheme(saved || (prefersDark ? "dark" : "light"));
+  const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
+  if (saved) {
+    setTheme(saved);
+  } else {
+    // Follow system and update icon
+    updateThemeIcon(mediaQuery.matches ? "dark" : "light");
+  }
+
+  // Listen for system theme changes
+  mediaQuery.addEventListener("change", (e) => {
+    if (!localStorage.getItem(CONFIG.STORAGE_KEY_THEME)) {
+      updateThemeIcon(e.matches ? "dark" : "light");
+    }
+  });
 }
 
 function setTheme(theme) {
@@ -51,12 +64,17 @@ function setTheme(theme) {
 }
 
 function toggleTheme() {
-  const current = document.documentElement.getAttribute("data-theme");
+  const current =
+    document.documentElement.getAttribute("data-theme") ||
+    (window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light");
   setTheme(current === "dark" ? "light" : "dark");
 }
 
 function updateThemeIcon(theme) {
   const icon = elements.themeToggle.querySelector(".material-symbols-rounded");
+  // If we are in dark theme, show 'light_mode' icon to allow switching to light
   icon.textContent = theme === "dark" ? "light_mode" : "dark_mode";
 }
 

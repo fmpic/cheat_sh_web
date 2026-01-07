@@ -19,6 +19,14 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
       rel="stylesheet"
     />
+    <script>
+      (function () {
+        const saved = localStorage.getItem("cheatsh_theme_md3");
+        if (saved) {
+          document.documentElement.setAttribute("data-theme", saved);
+        }
+      })();
+    </script>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
