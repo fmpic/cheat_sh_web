@@ -30,6 +30,8 @@
   --md-sys-color-error-container: #8c1d18;
   --md-sys-color-on-error-container: #f9dedc;
 
+  --autocomplete-bg: #211f26;
+
   /* Terminal Colors */
   --terminal-bg: #1d1b20;
   --terminal-text: #e6e1e5;
@@ -55,6 +57,8 @@
 }
 
 [data-theme="light"] {
+  --terminal-bg: #47475a;
+  
   --md-sys-color-background: #fef7ff;
   --md-sys-color-on-background: #1d1b20;
   --md-sys-color-surface: #fef7ff;
@@ -76,6 +80,8 @@
 
   --md-sys-color-tertiary-container: #ffd8e4;
   --md-sys-color-on-tertiary-container: #31111d;
+  
+  --autocomplete-bg: #ffffff;
 
   --md-sys-color-error: #b3261e;
   --md-sys-color-error-container: #f9dedc;
@@ -214,7 +220,7 @@ body {
   left: 0;
   right: 0;
   margin-top: 4px;
-  background-color: #ffffff; /* Requested white background */
+  background-color: var(--autocomplete-bg);
   border-radius: var(--md-sys-shape-corner-medium);
   box-shadow: var(--md-sys-elevation-2);
   max-height: 280px;
@@ -231,7 +237,7 @@ body {
 .autocomplete-item {
   padding: 12px 16px;
   font-size: 15px;
-  color: #1d1b20; /* Dark text for white background */
+  color: var(--md-sys-color-on-background);
   cursor: pointer;
   background: transparent;
   border: none;
@@ -243,7 +249,7 @@ body {
 }
 .autocomplete-item:hover,
 .autocomplete-item.selected {
-  background-color: #f1f0f4; /* Light grey hover */
+  background-color: var(--md-sys-color-outline-variant); /* Light grey hover */
 }
 /* Remove dark theme overrides, force white style always */
 .autocomplete-item strong {
